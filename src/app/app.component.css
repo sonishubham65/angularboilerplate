@@ -1,0 +1,7 @@
+#demo {
+  padding: 15px;
+}
+
+#demo .title span {
+  border-bottom: solid 2px #ccc;
+}

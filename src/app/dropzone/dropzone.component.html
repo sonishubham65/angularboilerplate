@@ -1,0 +1,64 @@
+<h3 mat-dialog-title>File uploader</h3>
+<div mat-dialog-content>
+<mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab label="Dropzone">
+        <div class="dropzone">
+            <form appDnd (fileDropped)="onFileChange($event)">
+                <input id="Fileupload" type="file" multiple (change)="onFileChange($event)">
+                <h3>Drag and drop file here</h3>
+                <h3>or</h3>
+                <label for="Fileupload">Browse for file</label>
+            </form>
+        </div>
+    </mat-tab>
+    <mat-tab label="Recent uploads" id="recent" *ngIf="fileExists">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let file of files; index as i; first as isFirst">
+                    <tr *ngIf="file">
+                        <td><span class="filename">{{file?.file.name}}</span></td>
+                        <td>
+                            <mat-icon *ngIf="file.status=='uploading'" (click)="pauseIt(i)">pause</mat-icon>
+                            <mat-icon *ngIf="file.status=='paused'" (click)="resumeIt(i)">settings_backup_restore</mat-icon>
+                            <mat-icon *ngIf="!(file.status=='uploaded' || file.status =='cancelled')" (click)="cancelIt(i)">cancel</mat-icon>
+                            <mat-icon *ngIf="(file.status =='uploaded')" (click)="removeIt(i)">delete</mat-icon>
+                        </td>
+                        <td>
+                            <span class="bar" *ngIf="file.status=='uploading'">
+                                <mat-progress-bar class="progressbar" mode="determinate" [value]="file.percentage"></mat-progress-bar>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+                
+            </tbody>
+        </table>
+        <div mat-dialog-actions>
+            <button (click)="filepicker()" [disabled]="!filePick.length" mat-button color="primary">Confirm Selection</button>
+        </div>
+        
+    </mat-tab>
+    <!-- <mat-tab label="Documents" id="documents">
+        <mat-icon (click)="listfiles(1)">refresh</mat-icon>
+        <mat-spinner *ngIf="loadingDocuments" [diameter]="20"> </mat-spinner>
+        <mat-selection-list [(ngModel)]="selectedOptions" [multiple]="data.multiple">
+            <mat-list-option [disabled]="document.status=='initialize'" role="listitem" *ngFor="let document of documents;  index as i" [value]="document">
+                <span [class]="document.status">{{i+1}}. {{document.name}}</span>
+            </mat-list-option>
+        </mat-selection-list>
+        <div mat-dialog-actions *ngIf="!loadingDocuments">
+            <button (click)="filepick()" [disabled]="!selectedOptions.length" mat-button color="primary">Confirm Selection</button>
+        </div>
+    </mat-tab> -->
+</mat-tab-group>
+</div>
+
+<div mat-dialog-actions class="actionitems">
+    <button mat-raised-button color="warn" (click)="closeIt()">Close</button>
+</div>

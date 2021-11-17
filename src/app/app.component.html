@@ -1,2 +1,7 @@
-<input id="name" type="file" (change)="onFileChange($event)">
-{{percentage}}
+<div id="demo">
+<h3 class="title"><span>File uploader demo</span></h3>
+
+<p><app-file [intake]="fileinput1" (outtake)="fnfileinput1($event)"></app-file></p>
+<p><app-file [intake]="fileinput2"></app-file></p>
+<p><button mat-raised-button color="primary">Go</button></p>
+</div>

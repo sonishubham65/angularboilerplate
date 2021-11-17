@@ -1,0 +1,82 @@
+.dropzone {
+  margin: 5px;
+  border: dashed 2px #ccc;
+  padding: 15px;
+  text-align: center;
+}
+input {
+  display: none;
+}
+.filename {
+  width: 300px;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+}
+#documents .action {
+  float: right;
+}
+table tr th,
+table tr td {
+  text-align: start;
+}
+.progressbar {
+  width: 150px;
+}
+
+#documents {
+  overflow: scroll;
+}
+.list-content {
+  display: flex;
+  justify-content: space-between;
+}
+.actions mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+/* .mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+  height: 24px;
+  font-size: 13px !important;
+}
+
+.mat-list-base .mat-list-item span {
+  margin-right: 5px;
+}
+.mat-list-base .mat-list-item span.name {
+  width: 50%;
+  overflow: hidden;
+}
+
+.mat-list-base .mat-list-item span.right {
+  width: 50%;
+  text-align: right;
+}
+.mat-list-base .mat-list-item span.right span.bar {
+  width: 150px;
+  display: inline-block;
+}
+
+.mat-list-base .mat-list-item span.right span.checkmark {
+  display: inline-block;
+}
+
+.mat-list-base .mat-list-item span.right span.action button {
+  margin: 5px;
+  background: #fff;
+  border: solid 1px #ccc;
+  cursor: pointer;
+}
+
+.actionitems {
+  margin-top: 15px;
+  padding-top: 15px;
+}
+
+.initialize {
+  color: #ccc;
+} */
