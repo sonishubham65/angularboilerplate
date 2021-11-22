@@ -3,10 +3,12 @@
 <mat-tab-group [(selectedIndex)]="tabIndex">
     <mat-tab label="Dropzone">
         <div class="dropzone">
-            <form appDnd (fileDropped)="onFileChange($event)">
+            <form appDnd (fileDropped)="onFileChange($event)" #FileuploadForm id="FileuploadForm">
                 <input id="Fileupload" type="file" multiple (change)="onFileChange($event)">
-                <h3>Drag and drop file here</h3>
-                <h3>or</h3>
+                Drag and drop file here
+                <br/>
+                or
+                <br/>
                 <label for="Fileupload">Browse for file</label>
             </form>
         </div>

@@ -1,4 +1,12 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DropzoneService } from './dropzone.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -14,6 +22,7 @@ export class DropzoneComponent implements OnInit, OnDestroy {
   tabIndex: number = 0;
   dialogResult: any;
   files: Array<any> = [];
+  @ViewChild('Fileupload') FileuploadForm!: ElementRef;
 
   constructor(
     private dropzoneService: DropzoneService,
@@ -24,18 +33,23 @@ export class DropzoneComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   async onFileChange(event: any) {
-    console.log(event.target.files);
+    const files = event.target ? event.target.files : event;
+    console.log(event);
     for (let i = 0; i < this.files.length; i++) {
       //this.cancelIt(i);
     }
-    if (event.target.files && event.target.files.length) {
-      for (let val of event.target.files) {
+    if (files && files.length) {
+      for (let val of files) {
         const value = {
           file: val,
           status: 'pending',
         };
         this.files.push(value);
         this.startUpload(this.files.length - 1);
+      }
+      if (event.target) {
+        console.log(this.FileuploadForm);
+        this.FileuploadForm.nativeElement.reset();
       }
       this.triggerFilepicker();
       this.tabIndex = 1;
