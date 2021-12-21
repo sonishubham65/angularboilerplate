@@ -49,7 +49,7 @@ export class DropzoneComponent implements OnInit, OnDestroy {
       }
       if (event.target) {
         console.log(this.FileuploadForm);
-        this.FileuploadForm.nativeElement.reset();
+        this.FileuploadForm.nativeElement?.reset();
       }
       this.triggerFilepicker();
       this.tabIndex = 1;
