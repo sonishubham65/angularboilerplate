@@ -23,4 +23,9 @@ export class AppService {
       },
     });
   }
+  getCSRF() {
+    return this.http.get(`${environment.backenduri}`, {
+      withCredentials: true,
+    });
+  }
 }

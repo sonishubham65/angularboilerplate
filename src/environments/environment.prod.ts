@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backenduri: 'http://localhost:3000',
 };

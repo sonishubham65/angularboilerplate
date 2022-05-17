@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 import { AppService } from './app.service';
 @Component({
   selector: 'app-root',
@@ -12,6 +13,23 @@ export class AppComponent implements OnInit {
   properties = [];
   constructor(private appService: AppService) {}
   ngOnInit() {}
+  setCookie() {
+    this.appService
+      .getCSRF()
+      .pipe(
+        finalize(() => {
+          console.log('Request done..');
+        })
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
   fnfileinput1(evt: any) {
     console.log(evt);
   }
