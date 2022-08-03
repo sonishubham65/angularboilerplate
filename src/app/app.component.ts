@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
         })
       )
       .subscribe(
-        (data) => {
+        (data: any) => {
           console.log(data);
         },
         (err) => {

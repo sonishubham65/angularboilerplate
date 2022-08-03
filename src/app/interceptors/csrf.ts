@@ -13,7 +13,9 @@ export class CSRF implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): any {
-    const modifiedReq = req.clone({});
+    const modifiedReq = req.clone({
+      withCredentials: true,
+    });
     return from(
       next
         .handle(modifiedReq)
